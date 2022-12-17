@@ -1,0 +1,11 @@
+#!/bin/sh
+
+if [ ! -f /root/.mozilla/firefox/installs.ini ]; then
+    echo "creating firefox profile"
+    cp -a /fake/.mozilla /root
+fi
+
+/usr/bin/cshell/launcher
+
+firefox https://localhost:14186/id
+

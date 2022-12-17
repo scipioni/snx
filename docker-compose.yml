@@ -1,0 +1,19 @@
+version: "3.8"
+
+services:
+  snx:
+    image: galileo/snx
+    init: true
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - /lib/modules:/lib/modules
+      - ./firefox:/root/.mozilla/
+    environment:
+      - DISPLAY=${DISPLAY}
+    ports:
+      - 14186:14186
+    cap_add:
+      - NET_ADMIN
