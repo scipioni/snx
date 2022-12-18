@@ -1,8 +1,23 @@
+.PHONY: reset run build
+
+run: setup
+	docker compose up
+
+setup: .env setup/snx_install.sh
+
 reset:
 	docker compose down
 	sudo rm -fR ./firefox
 
-run:
-	docker compose up
+.env:
+	@echo "create default .env"
+	@cp env.sample .env
 
+setup/snx_install.sh:
+	@echo "download setup file with ./download.sh <url_vpn_server>"
+	exit 1
+
+build: .env setup/snx_install.sh
+	make reset
+	docker compose build
 

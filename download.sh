@@ -3,7 +3,7 @@
 VPN=$1
 
 mkdir -p ./setup
-if [ ! s    -f setup/snx_install.sh ]; then
+if [ ! -f setup/snx_install.sh ]; then
     echo "downloading snx_install.sh"
     curl -k --fail --silent --output "setup/snx_install.sh" "https://${VPN}/SNX/INSTALL/snx_install.sh"
 fi

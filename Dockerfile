@@ -20,7 +20,7 @@ COPY ./setup /setup
 RUN bash /setup/snx_install.sh
 
 # cshell
-RUN ln -s /fake/.mozilla /root
+COPY /fake/.mozilla /root/.mozilla
 RUN mkdir -p /root/.config/autostart
 RUN bash /setup/cshell_install.sh
 

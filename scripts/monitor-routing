@@ -1,0 +1,11 @@
+#!/bin/bash
+
+ip monitor route | while read event; do
+    case "$event" in
+    *'tunsnx'*)
+        #echo route $event
+        NET=$(echo "$event" | tr -s ' ' | cut -d ' ' -f1)
+        [ "$NET" = "local" ] || echo "ip route add $NET via \${LOCAL_IP}"
+        ;;
+    esac
+done

@@ -13,15 +13,23 @@ Two files are required and can be downloaded from vpn server (stored in ./setup)
 
 copy env.sample to .env
 
-## build
+## build docker image
 
 ```
+make build
+
+or
+
 docker compose build
 ```
 
 ## run vpn
 
 ```
+make run
+
+or 
+
 docker compose up
 ```
 
@@ -29,11 +37,19 @@ Firefox is opened on https://localhost:14186/id page. This page has self signed 
 
 Open url of vpn server, login and connect accepting all dialogs.
 
-Firefox settings are stored in ./firefox folder, reset it to reload environment. I like to set firefox "open previous windows and tabs" to restore vpn server page.
-
 
 Add routing behind vpn client
 ```
 source .env
 sudo ip r add <net> via ${LOCAL_IP}
+```
+
+Close firefox to close vpn
+
+## reset
+
+Firefox settings are stored in ./firefox folder, reset it to reload environment. I like to set firefox "open previous windows and tabs" to restore vpn server page.
+
+```
+make reset
 ```
