@@ -1,0 +1,10 @@
+{
+   "policies": {
+      "ImportEnterpriseRoots": true,
+      "Certificates": {
+         "Install": [
+            "/usr/bin/cshell/cert/CShell_Certificate.crt"
+         ]
+      }
+   }
+}

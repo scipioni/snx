@@ -2,6 +2,9 @@
 
 ## prereq
 
+- docker compose
+- make
+
 Two files are required and can be downloaded from vpn server (stored in ./setup):
 
 - snx_install.sh
@@ -11,37 +14,25 @@ Two files are required and can be downloaded from vpn server (stored in ./setup)
 ./download.sh <url_vpn_server>
 ```
 
-copy env.sample to .env
+Copy env.sample to .env
+
+Create file /etc/sudoers.d/snx
+
+```
+%wheel ALL=(ALL:ALL) NOPASSWD: /usr/bin/ip
+```
 
 ## build docker image
 
 ```
 make build
 
-or
-
-docker compose build
 ```
 
 ## run vpn
 
 ```
 make run
-
-or 
-
-docker compose up
-```
-
-Firefox is opened on https://localhost:14186/id page. This page has self signed certificate that has to be accepted ('advanced' link and 'accept risk and continue' button)
-
-Open url of vpn server, login and connect accepting all dialogs.
-
-
-Add routing behind vpn client
-```
-source .env
-sudo ip r add <net> via ${LOCAL_IP}
 ```
 
 Close firefox to close vpn
@@ -53,3 +44,18 @@ Firefox settings are stored in ./firefox folder, reset it to reload environment.
 ```
 make reset
 ```
+
+## introspection
+
+Check cshell on https://localhost:14186/id
+
+Add routing behind vpn client
+
+```
+source .env
+sudo ip r add <net> via ${LOCAL_IP}
+```
+
+## TODO
+
+DNS ?

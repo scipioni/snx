@@ -1,0 +1,14 @@
+#!/bin/bash
+
+source .env
+
+docker compose up | while read event; do
+    case "$event" in
+    *'ip route'*)
+        #echo xxx $event
+        ROUTE=$(echo "$event" | cut -d '|' -f 2)
+        echo "add route: $ROUTE"
+        eval sudo $ROUTE
+        ;;
+    esac
+done

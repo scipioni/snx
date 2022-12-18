@@ -1,7 +1,8 @@
 .PHONY: reset run build
 
 run: setup
-	docker compose up
+	@#docker compose up
+	scripts/run-docker
 
 setup: .env setup/snx_install.sh
 
@@ -21,3 +22,5 @@ build: .env setup/snx_install.sh
 	make reset
 	docker compose build
 
+cli:
+	docker compose run --rm snx bash
