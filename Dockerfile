@@ -11,6 +11,7 @@ RUN apt install -y firefox-esr
 RUN rm -rf /var/lib/apt/lists/*
 
 COPY ./fake /fake
+COPY ./scripts /scripts
 ENV PATH=/fake:$PATH
 
 COPY ./setup /setup
@@ -24,4 +25,4 @@ RUN mkdir -p /root/.config/autostart
 RUN bash /setup/cshell_install.sh
 
 
-CMD ["/fake/run"]
+CMD ["/scripts/run"]

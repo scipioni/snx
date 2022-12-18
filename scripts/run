@@ -1,0 +1,19 @@
+#!/bin/bash
+
+MPROFILE=/root/.mozilla/firefox/
+
+if [ ! -f $MPROFILE/installs.ini ]; then
+    echo "creating firefox profile"
+    cp -a /fake/.mozilla /root
+fi
+
+/usr/bin/cshell/launcher
+
+/scripts/monitor &
+
+if [ -d $MPROFILE ]; then
+    firefox
+else 
+    echo "new firefox detected, open special page to accept certificate"
+    firefox https://localhost:14186/id
+fi

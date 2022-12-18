@@ -1,0 +1,18 @@
+#!/bin/bash
+
+ip monitor address | while read event; do
+    case "$event" in
+    'Deleted'*'tunsnx'*' inet '*)
+        echo deleted $event
+        IP=$(echo "$event" | tr -s ' ' | cut -d ' ' -f5 | cut -d '/' -f1)
+        echo "deleted ip $IP"
+        iptables -t nat -D POSTROUTING -o tunsnx -j SNAT --to-source $IP
+        ;;
+    *'tunsnx'*' inet '*)
+        echo $event
+        IP=$(echo "$event" | tr -s ' ' | cut -d ' ' -f4 | cut -d '/' -f1)
+        echo "natting new ip $IP"
+        iptables -t nat -A POSTROUTING -o tunsnx -j SNAT --to-source $IP
+        ;;
+    esac
+done

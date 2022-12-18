@@ -11,13 +11,15 @@ Two files are required and can be downloaded from vpn server (stored in ./setup)
 ./download.sh <url_vpn_server>
 ```
 
+copy env.sample to .env
+
 ## build
 
 ```
 docker compose build
 ```
 
-## run
+## run vpn
 
 ```
 docker compose up
@@ -32,5 +34,6 @@ Firefox settings are stored in ./firefox folder, reset it to reload environment.
 
 Add routing behind vpn client
 ```
-sudo ip r add <net> via 172.16.16.2
+source .env
+sudo ip r add <net> via ${LOCAL_IP}
 ```
