@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 if [ ! -f /root/.mozilla/firefox/installs.ini ]; then
     echo "creating firefox profile"
@@ -7,5 +7,10 @@ fi
 
 /usr/bin/cshell/launcher
 
-firefox https://localhost:14186/id
+#iptables -t nat -A POSTROUTING -o tunsnx -j MASQUERADE
+# no masquerade
+#value=$(ip a s tunsnx | egrep -o 'inet [0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}')
+#IP="${value##inet}"
+#iptables -t nat -A POSTROUTING -o tunsnx -j SNAT --to-source $IP
 
+firefox https://localhost:14186/id

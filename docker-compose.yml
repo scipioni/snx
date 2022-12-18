@@ -10,10 +10,22 @@ services:
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix
       - /lib/modules:/lib/modules
+      - ./fake/run:/fake/run
       - ./firefox:/root/.mozilla/
     environment:
       - DISPLAY=${DISPLAY}
-    ports:
-      - 14186:14186
+    #ports:
+    #  - 14186:14186
     cap_add:
+      #- ALL
       - NET_ADMIN
+    networks:
+      snx-network:
+        ipv4_address: 172.16.16.2
+networks:
+  snx-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.16.16.0/24
+          gateway: 172.16.16.1
