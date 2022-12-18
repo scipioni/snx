@@ -15,7 +15,7 @@ reset:
 	@cp env.sample .env
 
 setup/snx_install.sh:
-	@echo "download setup file with ./download.sh <url_vpn_server>"
+	@echo "download setup file with scripts/download.sh <url_vpn_server>"
 	exit 1
 
 build: .env setup/snx_install.sh

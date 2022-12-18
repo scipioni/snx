@@ -11,12 +11,12 @@ Two files are required and can be downloaded from vpn server (stored in ./setup)
 - cshell_install.sh
 
 ```
-./download.sh <url_vpn_server>
+scripts/download.sh <url_vpn_server>
 ```
 
 Copy env.sample to .env
 
-Create file /etc/sudoers.d/snx
+Create file /etc/sudoers.d/snx (set wheel or sudo group)
 
 ```
 %wheel ALL=(ALL:ALL) NOPASSWD: /usr/bin/ip
@@ -26,7 +26,6 @@ Create file /etc/sudoers.d/snx
 
 ```
 make build
-
 ```
 
 ## run vpn
@@ -39,7 +38,7 @@ Close firefox to close vpn
 
 ## reset
 
-Firefox settings are stored in ./firefox folder, reset it to reload environment. I like to set firefox "open previous windows and tabs" to restore vpn server page.
+Firefox settings are stored in ./firefox folder, reset it to reload environment.
 
 ```
 make reset
