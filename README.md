@@ -1,4 +1,4 @@
-# snx client dockerized
+# dockerized snx client with cshell
 
 ## prereq
 
