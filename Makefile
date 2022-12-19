@@ -3,7 +3,10 @@
 run: setup
 	@#docker compose up
 	scripts/run-docker
+	make down
 
+down:
+	docker compose down
 setup: .env setup/snx_install.sh
 
 reset:
